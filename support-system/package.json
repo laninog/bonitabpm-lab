@@ -1,0 +1,17 @@
+{
+  "name": "hapi-api-layers",
+  "version": "1.0.0",
+  "description": "hapi api layers example",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alejandro Niño <alejandro6230@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "good": "^7.3.0",
+    "good-console": "^6.4.0",
+    "good-squeeze": "^5.0.2",
+    "hapi": "^16.6.0"
+  }
+}
