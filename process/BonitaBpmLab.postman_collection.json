@@ -1,0 +1,715 @@
+{
+	"info": {
+		"name": "BonitaBpmLab",
+		"_postman_id": "78ac8e9f-4223-1673-5938-d47e1540e43e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Loggin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Loggin is ok\", function () {",
+							"",
+							"    pm.response.to.have.status(200);",
+							"",
+							"    let token = postman.getResponseCookie(\"X-Bonita-API-Token\").value;",
+							"    postman.setEnvironmentVariable(\"token\", token);",
+							"",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "{{user}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "redirect",
+							"value": "false",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/loginservice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"loginservice"
+					]
+				},
+				"description": "Loggin"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Session UserId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Unusedid is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    ",
+							"    let userId = JSON.parse(responseBody).user_id;",
+							"    postman.setEnvironmentVariable(\"userId\", userId);",
+							"    ",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/system/session/unusedid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"system",
+						"session",
+						"unusedid"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get ProcessId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Process is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    ",
+							"    let processId = JSON.parse(responseBody)[0].id;",
+							"    postman.setEnvironmentVariable(\"processId\", processId);",
+							"    ",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "walter.bates",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "bpm",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "redirect",
+							"value": "false",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/process?c=10&p=0&f=name=Candidates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"process"
+					],
+					"query": [
+						{
+							"key": "c",
+							"value": "10",
+							"equals": true
+						},
+						{
+							"key": "p",
+							"value": "0",
+							"equals": true
+						},
+						{
+							"key": "f",
+							"value": "name=Candidates",
+							"equals": true
+						}
+					]
+				},
+				"description": "Get Process"
+			},
+			"response": []
+		},
+		{
+			"name": "Instance Candidates Process",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Process Instantiation is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    ",
+							"    let caseId = JSON.parse(responseBody).caseId;",
+							"    postman.setEnvironmentVariable(\"caseId\", caseId);",
+							"    ",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"curriculumContract\": {\n\t\t\"name\": \"Ivan Soca\",\n\t\t\"jobPosition\": \"Developer\",\n\t\t\"cv\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet magna et nibh sollicitudin congue sit amet sed lacus. Duis blandit porttitor neque, quis ultricies massa egestas ut. Donec sapien purus, rutrum sed ipsum at, tincidunt molestie nibh. In congue lacus erat, eu semper nulla mattis nec. Duis at lobortis tellus.\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/process/{{processId}}/instantiation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"process",
+						"{{processId}}",
+						"instantiation"
+					]
+				},
+				"description": "Instance Process with Contract"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Case Ref",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Get case ref is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    ",
+							"    let caseDataLink = JSON.parse(responseBody).curriculum_ref.link;",
+							"    postman.setEnvironmentVariable(\"caseDataLink\", caseDataLink);",
+							"    ",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"curriculumContract\": {\n\t\t\"name\": \"Alejandro Niño\",\n\t\t\"jobPosition\": \"Developer\",\n\t\t\"cv\": \"Experience in rockets\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/case/{{caseId}}/context",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"case",
+						"{{caseId}}",
+						"context"
+					]
+				},
+				"description": "Get Data from Case"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Case Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"curriculumContract\": {\n\t\t\"name\": \"Alejandro Niño\",\n\t\t\"jobPosition\": \"Developer\",\n\t\t\"cv\": \"Experience in rockets\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/{{caseDataLink}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"{{caseDataLink}}"
+					]
+				},
+				"description": "Get Data from Case"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pending Check CV Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Get human tasks is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    ",
+							"    let taskId = JSON.parse(responseBody)[0].id;",
+							"    postman.setEnvironmentVariable(\"taskId\", taskId);",
+							"    ",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"curriculumContract\": {\n\t\t\"name\": \"Manu Fosela\",\n\t\t\"jobPosition\": \"Head\",\n\t\t\"cv\": \"Experience in rockets\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/humanTask?p=0&c=10&f=caseId={{caseId}}&f=name=Check_CV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"humanTask"
+					],
+					"query": [
+						{
+							"key": "p",
+							"value": "0",
+							"equals": true
+						},
+						{
+							"key": "c",
+							"value": "10",
+							"equals": true
+						},
+						{
+							"key": "f",
+							"value": "caseId={{caseId}}",
+							"equals": true
+						},
+						{
+							"key": "f",
+							"value": "name=Check_CV",
+							"equals": true
+						}
+					]
+				},
+				"description": "Get Human Tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Check CV to User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Assign tasks is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"assigned_id\": {{userId}}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/userTask/{{taskId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"userTask",
+						"{{taskId}}"
+					]
+				},
+				"description": "Assign Task to User"
+			},
+			"response": []
+		},
+		{
+			"name": "Execute Task Check CV",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Execute tasks is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(204);",
+							"",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"isValidated\": \"true\",\n\t\"comments\": \"There it goes\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/userTask/{{taskId}}/execution",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"userTask",
+						"{{taskId}}",
+						"execution"
+					]
+				},
+				"description": "Execute Task with Contract Check CV"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pending IT Test Tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Get human tasks is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    ",
+							"    let taskId = JSON.parse(responseBody)[0].id;",
+							"    postman.setEnvironmentVariable(\"taskId\", taskId);",
+							"    ",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"curriculumContract\": {\n\t\t\"name\": \"Manu Fosela\",\n\t\t\"jobPosition\": \"Head\",\n\t\t\"cv\": \"Experience in rockets\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/humanTask?p=0&c=10&f=caseId={{caseId}}&f=name=IT_Test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"humanTask"
+					],
+					"query": [
+						{
+							"key": "p",
+							"value": "0",
+							"equals": true
+						},
+						{
+							"key": "c",
+							"value": "10",
+							"equals": true
+						},
+						{
+							"key": "f",
+							"value": "caseId={{caseId}}",
+							"equals": true
+						},
+						{
+							"key": "f",
+							"value": "name=IT_Test",
+							"equals": true
+						}
+					]
+				},
+				"description": "Get Human Tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "Assign IT Test to User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Assign tasks is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(200);",
+							"",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"assigned_id\": {{userId}}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/userTask/{{taskId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"userTask",
+						"{{taskId}}"
+					]
+				},
+				"description": "Assign Task to User"
+			},
+			"response": []
+		},
+		{
+			"name": "Execute Task IT Tesk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Execute tasks is ok\", function () {",
+							"    ",
+							"    pm.response.to.have.status(204);",
+							"",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Bonita-API-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"isApproved\": \"true\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/bonita/API/bpm/userTask/{{taskId}}/execution",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bonita",
+						"API",
+						"bpm",
+						"userTask",
+						"{{taskId}}",
+						"execution"
+					]
+				},
+				"description": "Execute Task with Contract IT Test"
+			},
+			"response": []
+		}
+	]
+}
