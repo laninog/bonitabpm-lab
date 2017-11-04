@@ -1,6 +1,6 @@
 # support-system
 
-This app simulates an external system which will be call by the business process from Service Task. It shows how easy is integration between business process and other apps, using Bonita connectors 
+This app simulates an external system which will be call by the business process from *Service Task*. It shows how easy is integration between business process and other apps, using *Bonita BPM* connectors 
 
 ## Build Setup
 

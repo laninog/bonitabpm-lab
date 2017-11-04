@@ -4,11 +4,11 @@ This example shows how model and integrate a business process created using Boni
 
 Inside, you will find three folders:
 
-- company-app: Internal web app to execute process' tasks.
+- **company-app** Internal web app to execute process' tasks.
 
-- suport-system: Tiny app which simulates an external system.
+- **suport-system** Tiny app which simulates an external system.
 
-- process: Bonita BPM files and Postman' requests in order to test whole process.
+- **process** Bonita BPM files and Postman' requests in order to test whole process.
 
 In order to test this example you will have to install:
 

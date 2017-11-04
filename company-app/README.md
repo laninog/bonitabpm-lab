@@ -16,7 +16,7 @@ npm run dev
 
 Once process is deployed, run this app and [login](http://localhost:8080/bonita) 
 
-- User: walter.bates
-- Password: bpm
+- **User** walter.bates
+- **Password** bpm
 
 A Vue.js project
