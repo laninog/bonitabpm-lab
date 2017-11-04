@@ -12,8 +12,8 @@ Once *Bonita BPM Studio* is installed:
 
 ## Version 1.0
 
-<img src="https://github.com/laninog/bonitabpm-lab/blob/master/process/Version_1_0.png">
+<img src="https://github.com/laninog/bonitabpm-lab/blob/master/process/Version_1_0.png" width="600">
 
 ## Version 2.0
 
-<img src="https://github.com/laninog/bonitabpm-lab/blob/master/process/Version_2_0.png">
+<img src="https://github.com/laninog/bonitabpm-lab/blob/master/process/Version_2_0.png" width="600">
