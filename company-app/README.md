@@ -1,6 +1,6 @@
 # company-app
 
-> A Vue.js project
+This app simulates a company system from where HR and IT employees will execute process' tasks. It shows how to use Bonita API to manage the business process.
 
 ## Build Setup
 
@@ -8,11 +8,15 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve at localhost
 npm run dev
-
-# build for production with minification
-npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## How to
+
+Once process is deployed, run this app and [login](http://localhost:8080/bonita) 
+
+- User: walter.bates
+- Password: bpm
+
+A Vue.js project
