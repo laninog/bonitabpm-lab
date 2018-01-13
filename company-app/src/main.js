@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import {appStore} from './store/store';
+import {appStore} from './store';
 
 new Vue({
     el: '#app',
